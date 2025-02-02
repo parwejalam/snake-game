@@ -1,0 +1,38 @@
+<div class="game-container">
+    <div class="canvas-wrapper">
+        <canvas #gameBoard></canvas>
+        
+        @if(isGameOver){
+        <div class="game-over">
+            <div class="game-over-text">GAME OVER!</div>
+            <div class="final-score">Score: {{ score }}</div>
+            <button (click)="startGame()">Play Again</button>
+        </div>
+        }
+    </div>
+
+    <div class="controls">
+        <div class="game-info">
+            <div class="score">🍎 {{ score }}</div>
+            <div class="speed-selector">
+                <label>Speed:</label>
+                <select [(ngModel)]="selectedSpeed" class="speed-dropdown">
+                    <option value="300">🐢 Slow</option>
+                    <option value="200">🚶 Medium</option>
+                    <option value="100">⚡ Fast</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="control-grid">
+            <button class="control-btn up" (click)="changeDirection(0, -1)">↑</button>
+            <button class="control-btn left" (click)="changeDirection(-1, 0)">←</button>
+            <button class="control-btn down" (click)="changeDirection(0, 1)">↓</button>
+            <button class="control-btn right" (click)="changeDirection(1, 0)">→</button>
+        </div>
+        
+        <button class="restart-btn" (click)="startGame()">
+            {{ isGameStarted ? '🔄 Restart' : '🎮 Start Game' }}
+        </button>
+    </div>
+</div>
